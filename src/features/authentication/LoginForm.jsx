@@ -11,6 +11,8 @@ function LoginForm() {
   const [password, setPassword] = useState("");
   const { login, isLoading } = useLogin();
 
+  // Test login = test@test.com & PW = 123456789
+
   function handleSubmit(e) {
     e.preventDefault();
     if (!email || !password) return;
