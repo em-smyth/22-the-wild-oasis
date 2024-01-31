@@ -1,5 +1,3 @@
-import { formatCurrency } from "../../utils/helpers";
-import Stat from "./Stat";
 import {
   HiOutlineBanknotes,
   HiOutlineBriefcase,
@@ -7,17 +5,20 @@ import {
   HiOutlineChartBar,
 } from "react-icons/hi2";
 
+import { formatCurrency } from "../../utils/helpers";
+import Stat from "./Stat";
+
 function Stats({ bookings, confirmedStays, numDays, cabinCount }) {
   // 1.
   const numBookings = bookings.length;
 
-  // 2.
+  // 2. Add the price of all bookings together
   const sales = bookings.reduce((acc, cur) => acc + cur.totalPrice, 0);
 
-  // 3.
+  // 3. The number of confirmedStays (checkins)
   const checkins = confirmedStays.length;
 
-  // 4. num checked in nights / all available nights (num days * num cabins)
+  // 4. Num checked in nights / all available nights (num days * num cabins)
   const occupation =
     confirmedStays.reduce((acc, cur) => acc + cur.numNights, 0) /
     (numDays * cabinCount);

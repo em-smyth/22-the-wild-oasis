@@ -3,6 +3,7 @@ import { toast } from "react-hot-toast";
 
 import { updateSetting as updateSettingApi } from "../../services/apiSettings";
 
+// Calls updateSetting, on success shows toast message and clears the query cache
 export function useUpdateSetting() {
   const queryClient = useQueryClient();
 

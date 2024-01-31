@@ -1,5 +1,5 @@
-import { NavLink } from "react-router-dom";
 import styled from "styled-components";
+import { NavLink } from "react-router-dom";
 import {
   HiOutlineCalendarDays,
   HiOutlineCog6Tooth,
@@ -8,14 +8,12 @@ import {
   HiOutlineUsers,
 } from "react-icons/hi2";
 
-// eslint-disable-next-line no-unused-vars
 const NavList = styled.ul`
   display: flex;
   flex-direction: column;
   gap: 0.8rem;
 `;
 
-// eslint-disable-next-line no-unused-vars
 const StyledNavLink = styled(NavLink)`
   &:link,
   &:visited {

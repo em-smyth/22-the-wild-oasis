@@ -1,9 +1,10 @@
+import { useSettings } from "./useSettings";
+import { useUpdateSetting } from "./useUpdateSetting";
+
 import Form from "../../ui/Form";
 import FormRow from "../../ui/FormRow";
 import Input from "../../ui/Input";
 import Spinner from "../../ui/Spinner";
-import { useSettings } from "./useSettings";
-import { useUpdateSetting } from "./useUpdateSetting";
 
 function UpdateSettingsForm() {
   const {
@@ -22,10 +23,11 @@ function UpdateSettingsForm() {
 
   function handleUpdate(e, field) {
     const { value } = e.target;
-
     if (!value) return;
     updateSetting({ [field]: value });
   }
+
+  // onBlur is triggered when an element loses focus
 
   return (
     <Form>

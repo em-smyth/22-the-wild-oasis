@@ -1,6 +1,7 @@
 import { createContext, useContext, useEffect } from "react";
 import { useLocalStorageState } from "../hooks/useLocalStorageState";
 
+// Creating a context to handle toggling the dark-mode on and off
 const DarkModeContext = createContext();
 
 function DarkModeProvider({ children }) {
@@ -9,6 +10,7 @@ function DarkModeProvider({ children }) {
     "isDarkMode"
   );
 
+  // Update the classlist for light or dark mode, whenever isDarkMode changes
   useEffect(
     function () {
       if (isDarkMode) {
@@ -33,6 +35,7 @@ function DarkModeProvider({ children }) {
   );
 }
 
+// Custom hook to share isDarkMode and toggleDarkMode
 function useDarkMode() {
   const context = useContext(DarkModeContext);
   if (context === undefined)

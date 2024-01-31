@@ -1,6 +1,6 @@
+import supabase from "./supabase";
 import { getToday } from "../utils/helpers";
 import { PAGE_SIZE } from "../utils/constants";
-import supabase from "./supabase";
 
 export async function getBookings({ filter, sortBy, page }) {
   let query = supabase
@@ -11,7 +11,6 @@ export async function getBookings({ filter, sortBy, page }) {
     );
 
   // FILTER
-
   if (filter) query = query[filter.method || "eq"](filter.field, filter.value);
 
   // SORT
@@ -50,7 +49,7 @@ export async function getBooking(id) {
   return data;
 }
 
-// Returns all BOOKINGS that are were created after the given date. Useful to get bookings created in the last 30 days, for example.
+// Returns all BOOKINGS that were created after the given date. Useful to get bookings created in the last 30 days, for example.
 // Date must be an ISO string
 export async function getBookingsAfterDate(date) {
   const { data, error } = await supabase
@@ -71,7 +70,6 @@ export async function getBookingsAfterDate(date) {
 export async function getStaysAfterDate(date) {
   const { data, error } = await supabase
     .from("bookings")
-    // .select('*')
     .select("*, guests(fullName)")
     .gte("startDate", date)
     .lte("startDate", getToday());
@@ -121,7 +119,7 @@ export async function updateBooking(id, obj) {
 }
 
 export async function deleteBooking(id) {
-  // REMEMBER RLS POLICIES
+  // REMEMBER TO UPDATE RLS POLICIES TO GIVE PERMISSIONS TO AUTHENTICATED USERS
   const { data, error } = await supabase.from("bookings").delete().eq("id", id);
 
   if (error) {

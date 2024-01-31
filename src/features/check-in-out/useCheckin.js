@@ -8,6 +8,7 @@ export function useCheckin() {
   const queryClient = useQueryClient();
   const navigate = useNavigate();
 
+  // call updateBooking & return checkin function. On success show toast message, navigate to dashboard and clear the query cache
   const { mutate: checkin, isLoading: isCheckingIn } = useMutation({
     mutationFn: ({ bookingId, breakfast }) =>
       updateBooking(bookingId, {

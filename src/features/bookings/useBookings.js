@@ -1,30 +1,29 @@
 import { useQuery, useQueryClient } from "@tanstack/react-query";
-import { getBookings } from "../../services/apiBookings";
 import { useSearchParams } from "react-router-dom";
+
+import { getBookings } from "../../services/apiBookings";
 import { PAGE_SIZE } from "../../utils/constants";
 
 export function useBookings() {
   const queryClient = useQueryClient();
   const [searchParams] = useSearchParams();
 
-  // FILTER
+  // FILTER - check status in the URL and filter the matching bookings (or show all)
   const filterValue = searchParams.get("status");
   const filter =
     !filterValue || filterValue === "all"
       ? null
       : { field: "status", value: filterValue };
 
-  // SORT
+  // SORT - check the selected sort from URL
   const sortByRaw = searchParams.get("sortBy") || "startDate-desc";
-
   const [field, direction] = sortByRaw.split("-");
-
   const sortBy = { field, direction };
 
   // PAGINATION
   const page = !searchParams.get("page") ? 1 : Number(searchParams.get("page"));
 
-  // QUERY
+  // QUERY - Call getBookings & conditional filter, sortBy and page functions
   const {
     isLoading,
     data: { data: bookings, count } = {},
@@ -34,7 +33,7 @@ export function useBookings() {
     queryFn: () => getBookings({ filter, sortBy, page }),
   });
 
-  // PRE_FETCHING
+  // PRE_FETCH - 1 page before and after
   const pageCount = Math.ceil(count / PAGE_SIZE);
   if (page < pageCount)
     queryClient.prefetchQuery({

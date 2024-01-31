@@ -6,6 +6,8 @@ import { updateBooking } from "../../services/apiBookings";
 export function useCheckout() {
   const queryClient = useQueryClient();
 
+  // call updateBooking & return checkin function. On success show toast message and clear the query cache
+
   const { mutate: checkout, isLoading: isCheckingOut } = useMutation({
     mutationFn: (bookingId) =>
       updateBooking(bookingId, {

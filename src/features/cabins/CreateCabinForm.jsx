@@ -1,13 +1,14 @@
 import { useForm } from "react-hook-form";
 
+import { useCreateCabin } from "./useCreateCabin";
+import { useEditCabin } from "./useEditCabin";
+
 import Input from "../../ui/Input";
 import Form from "../../ui/Form";
 import FormRow from "../../ui/FormRow";
 import Button from "../../ui/Button";
 import FileInput from "../../ui/FileInput";
 import Textarea from "../../ui/Textarea";
-import { useCreateCabin } from "./useCreateCabin";
-import { useEditCabin } from "./useEditCabin";
 
 function CreateCabinForm({ cabinToEdit = {}, onCloseModal }) {
   const { id: editId, ...editValues } = cabinToEdit;
@@ -19,7 +20,6 @@ function CreateCabinForm({ cabinToEdit = {}, onCloseModal }) {
   const { errors } = formState;
 
   const { isCreating, createCabin } = useCreateCabin();
-
   const { isEditing, editCabin } = useEditCabin();
 
   const isWorking = isCreating || isEditing;
@@ -132,7 +132,6 @@ function CreateCabinForm({ cabinToEdit = {}, onCloseModal }) {
       </FormRow>
 
       <FormRow>
-        {/* type is an HTML attribute! */}
         <Button
           variation="secondary"
           type="reset"

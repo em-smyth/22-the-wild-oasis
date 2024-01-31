@@ -6,6 +6,7 @@ import { createEditCabin } from "../../services/apiCabins";
 export function useEditCabin() {
   const queryClient = useQueryClient();
 
+  // Call createEditCabin, on success shows toast message and clears the query cache
   const { mutate: editCabin, isLoading: isEditing } = useMutation({
     mutationFn: ({ newCabinData, id }) => createEditCabin(newCabinData, id),
     onSuccess: () => {
