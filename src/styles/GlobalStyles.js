@@ -185,6 +185,16 @@ img {
   filter: grayscale(var(--image-grayscale)) opacity(var(--image-opacity));
 }
 
+.example::-webkit-scrollbar {
+    display: none;
+}
+
+/* Optional: Prevent scrollbar space from being reserved */
+.example {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}
+
 `;
 
 export default GlobalStyles;
